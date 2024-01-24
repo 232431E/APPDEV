@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Kim's Meat</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">My Account</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/createUser">Create Staff User</a></li>
+            <li><a class="dropdown-item" href="/retrieveUsers">Update/Delete Staff User</a></li>
+          </ul>
+        <li class="nav-item">
+          <a class="nav-link" href="/orderSummary">Summary of Orders</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Product Management</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/createProduct">Create Product</a></li>
+            <li><a class="dropdown-item" href="/updateProduct">Update Product</a></li>
+            <li><a class="dropdown-item" href="/deleteProduct">Delete Product</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Order Management</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item">Current Orders</a></li>
+            <li><a class="dropdown-item">Past Orders</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
