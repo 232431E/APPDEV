@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .new-arrival-item {
+          background-color: #f2f2f2;
+          padding: 10px;
+          margin-bottom: 20px;
+          text-align: center;
+        }
+
+        .new-arrival-item img {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+          margin-bottom: 10px;
+        }
+
+        .new-arrival-item h3 {
+          margin: 0;
+          margin-bottom: 5px;
+        }
+
+        .new-arrival-item h4 {
+          margin: 0;
+          margin-bottom: 5px;
+          font-size: 1.2em;
+          font-weight: normal;
+        }
+
+        .new-arrival-item p {
+          margin: 0;
+          font-size: 1em;
+        }
+            .Sustainability{
+        width: 80%;
+        margin: auto;
+        text-align: center;
+        padding-top: 50px;
+    }
+    .Sustainability-col{
+        flex-basis: 32%;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        position: relative;
+        overflow: hidden;
+    }
+    .Sustainability-col img{
+        width: 100%;
+        display: block;
+    }
+    .layer{
+        background: transparent;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: 0.5s;
+    }
+    .layer:hover{
+        background: rgba(225,0,0,0.7);
+    }
+    .layer h3{
+        width: 100%;
+        font-weight: 500;
+        color: white;
+        font-size: 26px;
+        bottom: 0;
+        left: 50%;
+        transform:translateX(-50%);
+        position: absolute;
+        opacity: 0;
+        transition: 0.5s;
+    }
+    .layer:hover h3{
+        bottom: 49%;
+        opacity: 1;
+    }
+    .row{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+    }
+    .sol-col{
+        flex-basis: 31%;
+        background:lightpink;
+        border-radius: 10px;
+        margin-bottom: 5%;
+        padding: 15px 10px;
+        box-sizing: border-box;
+        transition: 0.5s;
+    }
+    .sol-col{
+        text-align: left;
+    }
+    h3{
+        text-align: center;
+        font-weight: 600;
+        margin: 10px 0;
+    }
+    .sol-col:hover{
+        box-shadow: 0 0 20px 0px rgba(0,0,0,0.2);
+    }
+    @media(max-width: 700px){
+        .row{
+            flex-direction: column;
+        }
+    }
+    </style>
+</head>
+<body>
+<section class="Sustainability">
+    <h1>New Arrival</h1>
+    <br>
+
+    <div class="row">
+        <div class="Sustainability-col">
+            <div class="new-arrival-item">
+                <div class="layer">
+                <h3><a href=".html" target="_self" style="color: inherit;">Add To Cart - $88</a></h3>
+                </div>
+                <img src="https://i.pinimg.com/564x/c9/f3/80/c9f3808903fa523c0b0b7f3b6cc7d772.jpg" alt="Best Roasted Beef">
+                <h3>BEEF FOR NUTRITIONS</h3>
+                <h4>Best Roasted Beef</h4>
+                <p>per KG</p>
+            </div>
+
+        </div>
+        <div class="Sustainability-col">
+            <div class="new-arrival-item">
+                <img src="path/to/your/image.jpg" alt="Marinated Beef">
+                <h3>BEEF FOR NUTRITIONS</h3>
+                <h4>Marinated Beef</h4>
+                <p>250g Pack<br>Add To Cart - $35.99</p>
+            </div>
+        </div>
+        <div class="Sustainability-col">
+            <div class="new-arrival-item">
+                <img src="path/to/your/image.jpg" alt="Marinated Chicken">
+                <h3>BEEF FOR NUTRITIONS</h3>
+                <h4>Marinated Chicken</h4>
+                <p>1 Kg Pack<br>Add To Cart - $19.99</p>
+            </div>
+        </div>
+        <div class="Sustainability-col">
+            <div class="new-arrival-item">
+                <img src="path/to/your/image.jpg" alt="Pork Rib">
+                <h3>BEEF FOR NUTRITIONS</h3>
+                <h4>Pork Rib</h4>
+                <p>250g Pack<br>Add To Cart - $9.99</p>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="new-arrival-container">
+
+
+</div>
+
+
+</body>
+</html>
