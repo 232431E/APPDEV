@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 align="center">Profile</h1>
+</br>
+<h3 align="center">Welcome To Your Profile!</h3>
+<br><br><br>
+<div class="text-center">
+	<a href="{{ url_for('logout')}}" class="btn btn-secondary btn-lg">Logout</a>
+	<a href="/updateProfile" class="btn btn-secondary btn-lg">Update Profile</a>
+	<a href="{{ url_for('confirm_delete')}}" class="btn btn-danger btn-lg">Delete</a>
+</div>
+
+{% endblock %}

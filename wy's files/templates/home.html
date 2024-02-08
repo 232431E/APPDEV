@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block title %}Library - Home{% endblock %}
+
+{% block content %}
+<br>
+<h1 class="display-4">Kim's Store</h1>
+<br>
+<table class="table table-striped">
+    <thead>
+        <h1>Popular Meats</h1>
+    </thead>
+    <tr>
+        <th>ID</th>
+        <th>Meat</th>
+        <th>Weight</th>
+        <th>Price</th>
+        <th></th>
+    </tr>
+    {% for meat in top %}
+    <tr>
+        <td>{{ meat.get_id() }}</td>
+        <td>{{ meat.get_meat() }}</td>
+        <td>{{ meat.get_weight() }}</td>
+        <td>{{ meat.get_price() }}</td>
+        <td>
+            <form method="POST" action="{{url_for('search')}}">
+              <input type="hidden" name="query" value="id:{{ meat.get_id() }}">
+              <input type="submit" value="Find Meat" class="btn btn-warning">
+            </form>
+          </td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<table class="table table-striped">
+    <thead>
+        <h1>Available Meats</h1>
+    </thead>
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>
+                <form method="POST" action="{{url_for('search')}}" style="justify-content: right; display: flex;">
+                    <input type="text" name="query" style="width: 200px; margin-right: 5px;" class="form-control"
+                        placeholder="Search">
+                    <input type="submit" value="Search" class="btn btn-primary">
+                </form>
+            </th>
+            <th><a class="btn btn-primary" href="/requestMeat">Request a Meat</a></th>
+        </tr>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Meat</th>
+                <th>Weight</th>
+                <th>Price</th>
+                <th></th>
+                <th>
+                    <form method="POST" action="{{url_for('search')}}" style="justify-content: right; display: flex;">
+                        <label for="meat" style="padding-right: 10px;">Filter by Meat:</label>
+                        <select id="meat" name="query" class="form-select"
+                            style="margin-right: 10px; width: max-content;">
+                            <option value="All">All</option>
+                            <option value="Chicken">Chicken</option>
+                            <option value="Salmon">Salmon</option>
+                            <option value="Steak">Steak</option>
+                            <option value="Pork">Pork</option>
+                            <option value="Shrimp">Shrimp</option>
+
+                        </select>
+                        <input type="submit" value="Filter" class="btn btn-primary">
+                    </form>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        {% for meat in meats %}
+        {% if meat.get_bought() == 0 %}
+        <tr>
+            <td>{{ meat.get_id() }}</td>
+            <td>{{ meat.get_meat() }}</td>
+            <td>{{ meat.get_weight() }}</td>
+            <td>{{ meat.get_price() }}</td>
+            <td></td>
+            <td><a class="btn btn-success" href="/buyMeat/{{ meat.get_id() }}">Add to cart</a></td>
+            <td></td>
+        </tr>
+        {% elif meat.get_id() in boughtlst %}
+        <tr>
+            <td>{{ meat.get_id() }}</td>
+            <td>{{ meat.get_meat() }}</td>
+            <td>{{ meat.get_weight() }}</td>
+            <td>{{ meat.get_price() }}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        {% else %}
+        <tr>
+            <td>{{ meat.get_id() }}</td>
+            <td>{{ meat.get_meat() }}</td>
+            <td>{{ meat.get_weight() }}</td>
+            <td>{{ meat.get_price() }}</td>
+            <td><a class="btn btn-warning" href="/reserveMeat/{{ meat.get_id() }}">Reserve</a></td>
+            <td></td>
+            <td></td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Library - Home{% endblock %}
+
+{% block content %}
+<br>
+<h1 class="display-4">Add a message</h2>
+    
+<form method="post" action="{{ url_for('forum') }}">
+    <br>
+    <label for="message">Message:</label>
+    <textarea class="form-control" id="message" name="message" required></textarea>
+    <br>
+    <input type="submit" class="btn btn-primary" value="Submit">
+</form>
+{% endblock %}

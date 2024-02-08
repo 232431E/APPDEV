@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Library - Forum{% endblock %}
+
+{% block content %}
+<h1 class="display-4">Edit Message</h1>
+
+<form method="post" action="{{ url_for('update_message', message_id=message_id) }}">
+  <label for="message">Message:</label>
+  <textarea class="form-control" id="message" name="message" required>{{ message.message }}</textarea>
+  <br>
+  <input style="margin: 0px 10px 0px 0px;" class="btn btn-primary" type="submit" value="Save">
+  <a class="btn btn-danger" href="{{ url_for('forum') }}">Cancel</a>
+</form>
+{% endblock %}
