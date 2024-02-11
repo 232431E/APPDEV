@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Library - Forum{% endblock %}
+
+{% block content %}
+<br>
+
+<h1 class="display-4">Forum</h1>
+<br>
+{% if messages == [] %}
+<p style="font-size: 22px;">This is a forum discussion page. Add a message to start a coversation!</p>
+{% else %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Message</th>
+      <th>Replies</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for message in messages %}
+    {% if message.name == username %}
+    <tr>
+      <td>{{ message.name }}</td>
+      <td>{{ message.message }}</td>
+      <td style="max-width: 400px; overflow-wrap: break-word;">
+        {% for reply in message.replies %}
+        <p>{{ reply.name }}: {{ reply.message }}</p>
+        {% endfor %}
+      </td>
+      <td>
+        <a href="{{ url_for('add_reply', message_id=loop.index) }}" class="btn btn-warning">Add Reply</a>
+        <a style="margin: 0px 10px 0px 10px;" class="btn btn-warning"
+          href="{{ url_for('edit_message', message_id=loop.index) }}">Edit</a>
+        <a class="btn btn-warning" href="{{ url_for('delete_message', message_id=loop.index) }}">Delete</a>
+      </td>
+    </tr>
+    {% else %}
+    <tr>
+      <td>{{ message.name }}</td>
+      <td>{{ message.message }}</td>
+      <td style="max-width: 400px; overflow-wrap: break-word;">
+        {% for reply in message.replies %}
+        <p>{{ reply.name }}: {{ reply.message }}</p>
+        {% endfor %}
+      </td>
+      <td><a href="{{ url_for('add_reply', message_id=loop.index) }}" class="btn btn-warning">Add Reply</a></td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+<br>
+<a href="/addmessage" class="btn btn-primary">Add a message</a>
+{% endblock %}

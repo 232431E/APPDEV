@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Library - Purchased Meats{% endblock %}
+
+{% block content %}
+<br>
+<table class="table table-striped">
+    <thead>
+        <h1>Purchased Meats</h1>
+    </thead>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Meat</th>
+            <th>Weight</th>
+            <th>Due Date</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    {% for meat in meats %}
+    <tr>
+        <td>{{ meat.get_id() }}</td>
+        <td>{{ meat.get_meat() }}</td>
+        <td>{{ meat.get_weight() }}</td>
+        <td>{{ meat.get_date() }}</td>
+        <td>{{ meat.get_price() }}</td>
+        <td><a class="btn btn-danger" href="/cancelBought/{{ meat.get_id() }}">remove item</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

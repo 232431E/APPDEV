@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Library - Search Results{% endblock %}
+
+{% block content %}
+<br>
+<h1 class="display-4">Meats</h1>
+<br>
+{% if query == "" %}
+<p> Please enter a query </p>
+<br>
+<a href="/home" class="btn btn-primary">Go Back</a>
+{% elif results == [] %}
+<p> No results found </p>
+{% else %}
+<table class="table table-striped">
+    <thead>
+        <h1>Search Results</h1>
+    </thead>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Meat</th>
+            <th>Weight</th>
+            <th>Price</th>
+            <th></th>
+            <th>
+                <form method="POST" action="{{url_for('search')}}" style="display: flex; justify-content: right;">
+                    <input type="text" name="query" style="width: 200px; margin-right: 5px;" class="form-control"
+                        placeholder="Search">
+                    <input type="submit" value="Search" class="btn btn-primary">
+                </form>
+            </th>
+            <th><a class="btn btn-primary" href="/requestMeat">Request a meat</a></th>
+        </tr>
+    </thead>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Meat</th>
+        <th>Weight</th>
+        <th>Price</th>
+        <th></th>
+        <th>
+            <form method="POST" action="{{url_for('search')}}" style="justify-content: right; display: flex;">
+                <label for="meat" style="padding-right: 10px;">Filter by type of meat:</label>
+                <select id="meat" name="query" class="form-select" style="margin-right: 10px; width: max-content;">
+                    <option value="All">All</option>
+                    <option value="Chicken">Chicken</option>
+                    <option value="Salmon">Salmon</option>
+                    <option value="Steak">Steak</option>
+                    <option value="Pork">Pork</option>
+                    <option value="Shrimp">Shrimp</option>
+
+                </select>
+                <input type="submit" value="Filter" class="btn btn-primary">
+            </form>
+        </th>
+        <th></th>
+    </tr>
+    <thead></thead>
+    {% for meat in results %}
+    <tr>
+        <td>{{ meat.get_id() }}</td>
+        <td>{{ meat.get_meat() }}</td>
+        <td>{{ meat.get_weight() }}</td>
+        <td>{{ meat.get_price() }}</td>
+        <td><a class="btn btn-warning" href="/reserveMeat/{{ meat.get_id() }}">Reserve</a></td>
+        <td><a class="btn btn-warning" href="/buyMeat/{{ meat.get_id() }}">Purchase meat</a></td>
+        <td></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+{% endblock %}
