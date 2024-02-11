@@ -5,27 +5,30 @@
 {% block content %}
 {% from "includes/_formHelper.html" import render_field %}
 
+<h1>Payment</h1>
 <h2>How would you like to get your order?</h2>
 <form method="post" action="">
   <div class="form-group">
-    {{ render_field(form.collection, class="form-control") }}
+    {{ render_field(form.collection, class="custom-class") }}
   </div>
   <h2>Personal Details</h2>
     <div class="form-group">
       {{ render_field(form.email, class="form-control") }}
-      {{ render_field(form.phone, class="form control")
-      {{ render_field(form.billing_address, class="form-control") }}
-    </div>
+    <br> {# Add a line break here #}
+      {{ render_field(form.phone, class="form-control") }}
+    <br> {# Add a line break here #}
+      {{ render_field(form.address, class="form-control") }}
+</div>
   <h2>When would you like to get your order?</h2>
     <div class="form-group">
-      {{ render_field(form.dateslot, class="form-control") }}
-      {{ render_field(form.timeslot, class="form-control") }}
-    </div>>
+      {{ render_field(form.date_slot, class="form-control") }}
+      {{ render_field(form.time_slot, class="form-control") }}
+    </div>
   <h2>How would you like to pay?</h2>
     <div class="form-group">
-      {{ render_field(form.payment, class="form-control") }}
+      {{ render_field(form.payment, class="custom-class") }}
     </div>
-  <input type="submit" value="Submit" class="btn btn-primary"/>
+  <input type="submit" value="Submit" class="btn btn-primary" onclick="confirmation()"/>
 </form>
 
 {% endblock %}

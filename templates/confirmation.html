@@ -1,0 +1,37 @@
+{% extends 'customerbase.html' %}
+{% block title %}Order Confirmation{% endblock %}
+
+{% block content %}
+
+<h1>Thank you for your order!</h1>
+  <p>We care currently processing your order, thank you for purchasing from us!</p>
+  <p>Please do contact us <a href="mailto: kimsmeat@gmail.com">here</a></p>
+<h2>Order Details</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Collection method</th>
+      <th>Address</th>
+      <th>Date Slot</th>
+      <th>Time Slot</th>
+      <th>Payment Method</th>
+      <th>Phone Number</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ checkout.get_collection() }}</td>
+        <td>{{ checkout.get_address() }}</td>
+        <td>{{ checkout.get_date_slot() }}</td>
+        <td>{{ checkout.get_time_slot() }}</td>
+        <td>{{ checkout.get_payment() }}</td>
+        <td>{{ checkout.get_phone() }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  {% if not checkout %}
+    <p>No orders found.</p>
+  {% endif %}
+
+{% endblock %}
