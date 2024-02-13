@@ -2,6 +2,9 @@ from flask import Flask, render_template, request, redirect, url_for
 from Login_Register_Form import LoginForm, RegistrationForm
 import shelve
 import Customer_login_register
+import requests
+
+# For making API requests to Snatchbot
 
 app = Flask(__name__)
 
@@ -118,42 +121,32 @@ def update_customer(id):
     # update personal information in settings?
     update_customer_form = RegistrationForm(request.form)
     if request.method == 'POST' and update_customer_form.validate():
-        try:
-            customers_dict = {}
-            with shelve.open('customer.db', 'w') as db:
-                customers_dict = db.get('Customers', {})
+        customers_dict = {}
+        db = shelve.open('customer.db', 'w')
+        customers_dict = db['Customers']
+        customer = customers_dict.get(id)
+        customer.set_first_name(update_customer_form.first_name.data)
+        customer.set_last_name(update_customer_form.last_name.data)
+        customer.set_gender(update_customer_form.gender.data)
+        customer.set_email(update_customer_form.email.data)
+        customer.set_date_joined(update_customer_form.date_joined.data)
+        customer.set_address(update_customer_form.address.data)
+        customer.set_password(update_customer_form.password.data)
 
-                customer = customers_dict.get(id)
-                if customer:
-                    customer = customers_dict.get(id)
-                    customer.set_first_name(update_customer_form.first_name.data)
-                    customer.set_last_name(update_customer_form.last_name.data)
-                    customer.set_gender(update_customer_form.gender.data)
-                    customer.set_email(update_customer_form.email.data)
-                    customer.set_date_joined(update_customer_form.date_joined.data)
-                    customer.set_address(update_customer_form.address.data)
-                    customer.set_password(update_customer_form.password.data)
+        db['Customers'] = customers_dict
+        db.close()
 
-                    db['Customers'] = customers_dict
-                    db.close()
-
-                    print('Customer details successfully updated')
-                    return redirect(url_for('retrieve_customer_details'))
-
-                else:
-                    return render_template('logined.html', message='Customer not found')
-        except Exception as e:
-            print(f"Error during update: {str(e)}")
-            return render_template('logined.html', message='Error during update')
+        print('Customer details successfully updated')
+        return redirect(url_for('retrieve_customer_details'))
 
     else:
         try:
             customers_dict = {}
             with shelve.open('customer.db', 'r') as db:
-                customers_dict = db.get('Customers', {})
+                customers_dict = db.get('Customers')
                 db.close()
 
-                customer = customers_dict.get(id)
+                customer = customers_dict
                 if customer:
                     customer = customers_dict.get(id)
                     update_customer_form.first_name.data = customer.get_first_name()
@@ -184,6 +177,22 @@ def delete_customer(id):
     db.close()
 
     return render_template('home.html')
+
+
+def send_message():
+    user_id = request.form['user_id']
+    message = request.form['message']
+
+    # Send the user's message to SnatchBot
+    api_key = '39d27725165ce5540fd6a476e502f2b0'
+    endpoint = 'https://account.snatchbot.me/channels/api/api/id379991/app1234/aps1234'
+    data = {'apiKey': api_key, 'user_id': user_id, 'message': message}
+    response = requests.post(endpoint, json=data)
+
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return {'error': f'Request failed with status code {response.status_code}'}
 
 
 if __name__ == '__main__':

@@ -4,5 +4,16 @@
 {% block content %}
 <h1 class="display-4">Home</h1>
 <p>Hello world!</p>
+<div data-bot-id=""></div>
+<script apikey="39d27725165ce5540fd6a476e502f2b0"
+        host="https://account.snatchbot.me"
+        src="https://account.snatchbot.me/share-bot-widget.js">
+
+</script>
+<script src="https://snatchbot.me/js/sdk/v1/sdk.js"></script>
+<script>
+    var bot = new SBW( '379991', '39d27725165ce5540fd6a476e502f2b0' );
+    bot.display();
+</script>
 {% endblock %}
 
