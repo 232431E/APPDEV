@@ -15,7 +15,14 @@
         {% block content %}
         {% endblock %}
     </div>
-    <div data-bot-id="379991"></div>
+    <script src="https://account.snatchbot.me/script.js"></script>
+    <script>window.sntchChat.Init(379991)</script>
+
+    <script src="https://snatchbot.me/js/sdk/v1/sdk.js"></script>
+    <script>
+        var bot = new SBW( '379991', '39d27725165ce5540fd6a476e502f2b0' );
+        bot.display();
+    </script>
     {% block scripts %}
 <!-- Popper 2.10.2, Bootstrap 5.1.3 JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

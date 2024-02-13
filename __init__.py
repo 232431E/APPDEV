@@ -5,7 +5,6 @@ import Customer_login_register
 import requests
 
 # For making API requests to Snatchbot
-
 app = Flask(__name__)
 
 
